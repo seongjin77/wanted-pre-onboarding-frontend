@@ -5,6 +5,7 @@ import Sign from "./pages/sign/Sign";
 import Todo from "./pages/todo/Todo";
 import { PrivateRoute, PublicRoute } from "./router/Router";
 import { createTheme, ThemeProvider } from "@mui/material";
+import Header from "./components/header/Header";
 
 function App() {
     const theme = createTheme({
@@ -16,6 +17,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
+                <Header/>
                 <Routes>
                     <Route path="/" element={<Navigate to="/todo" />} />
                     <Route
