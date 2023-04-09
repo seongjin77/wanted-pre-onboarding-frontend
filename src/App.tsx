@@ -1,9 +1,10 @@
 import { Container } from "@mui/material";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material";
 import Login from "./pages/login/Login";
 import Sign from "./pages/sign/Sign";
 import Todo from "./pages/todo/Todo";
+import { PrivateRoute, PublicRoute } from "./router/Router";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 function App() {
     const theme = createTheme({
@@ -16,8 +17,31 @@ function App() {
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
                 <Routes>
-                    <Route path="/todo" element={<Todo />} />
-                    <Route path="/signin" element={<Login />} />
+                    <Route path="/" element={<Navigate to="/todo" />} />
+                    <Route
+                        path="/todo"
+                        element={
+                            <PrivateRoute>
+                                <Todo />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/signin"
+                        element={
+                            <PublicRoute>
+                                <Login />
+                            </PublicRoute>
+                        }
+                    />
+                    <Route
+                        path="/signup"
+                        element={
+                            <PublicRoute>
+                                <Sign />
+                            </PublicRoute>
+                        }
+                    />
                     <Route path="/signup" element={<Sign />} />
                 </Routes>
             </Container>
