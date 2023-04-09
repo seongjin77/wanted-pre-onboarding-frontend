@@ -23,4 +23,14 @@ const createTodoAxios = async (todo: string) => {
   }
 }
 
-export { getTodoAxios,createTodoAxios };
+const UpdateAxios = async (Id: number, todo : string, isCompleted: boolean ) => {
+  try {
+      const res = await axiosAuthApi.put(`/todos/${Id}`, {todo, isCompleted});
+      console.log(res)
+      return res;
+  } catch (error) {
+      console.log(error);
+  }
+};
+
+export { getTodoAxios,createTodoAxios,UpdateAxios };

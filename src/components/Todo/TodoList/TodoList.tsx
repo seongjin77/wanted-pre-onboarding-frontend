@@ -9,14 +9,15 @@ export type Todo = {
 };
 
 type PropsType = {
-    todos: Todo[];
-};
+  todos: Todo[];
+  getTodos: () => Promise<void>;
+}
 
-const TodoList = ({ todos }: PropsType) => {
+const TodoList = ({ todos,getTodos }: PropsType) => {
     return (
         <TodoListWrap>
             {todos.map((item) => (
-                <TodoContent key={item.id} item={item} />
+                <TodoContent getTodos={getTodos} key={item.id} item={item} />
             ))}
         </TodoListWrap>
     );

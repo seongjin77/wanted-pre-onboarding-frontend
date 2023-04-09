@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TodoLi } from "./TodoContentStyle";
 import IconButton from "@mui/material/IconButton";
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
@@ -8,16 +8,22 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import { Todo } from "../TodoList/TodoList";
+import { UpdateAxios } from "../../../api/todo";
 
 
 
 type PropsType = {
   item: Todo;
+  getTodos: () => Promise<void>
 }
 
-const TodoContent = ({ item }: PropsType) => {
+const TodoContent = ({ item,getTodos }: PropsType) => {
+  const [checked, setChecked] = useState(item.isCompleted);
 
-    
+  const handleCheckToggle = () => {
+    setChecked(!checked)
+    UpdateAxios(item.id,item.todo,!checked)
+  };
    
     return (
         <TodoLi
@@ -41,8 +47,10 @@ const TodoContent = ({ item }: PropsType) => {
             <ListItemIcon>
                 <Checkbox
                     edge="start"
+                    checked={checked}
                     tabIndex={-1}
                     disableRipple
+                    onClick={handleCheckToggle}
                 />
             </ListItemIcon>
             <ListItemText id={`${item.id}`} primary={`${item.todo}`} />

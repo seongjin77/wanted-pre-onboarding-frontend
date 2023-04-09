@@ -22,7 +22,7 @@ const Todo = () => {
         <TodoWrap>
             <TodoBox>
                 <CreateTodo getTodos={getTodos} />
-                <TodoList todos={todos} />
+                <TodoList getTodos={getTodos} todos={todos} />
             </TodoBox>
         </TodoWrap>
     );
