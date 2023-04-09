@@ -33,4 +33,14 @@ const UpdateAxios = async (Id: number, todo : string, isCompleted: boolean ) => 
   }
 };
 
-export { getTodoAxios,createTodoAxios,UpdateAxios };
+const deleteTodoAxios = async (Id : number) => {
+  try {
+      const res = await axiosAuthApi.delete(`/todos/${Id}`);
+
+      return res;
+  } catch (error) {
+      console.log(error);
+  }
+};
+
+export { getTodoAxios,createTodoAxios,UpdateAxios,deleteTodoAxios };

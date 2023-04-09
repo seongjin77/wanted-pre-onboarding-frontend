@@ -8,7 +8,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import { Todo } from "../TodoList/TodoList";
-import { UpdateAxios } from "../../../api/todo";
+import { UpdateAxios, deleteTodoAxios } from "../../../api/todo";
 
 
 
@@ -20,19 +20,30 @@ type PropsType = {
 const TodoContent = ({ item,getTodos }: PropsType) => {
   const [checked, setChecked] = useState(item.isCompleted);
 
+  // 완료여부 수정
   const handleCheckToggle = () => {
     setChecked(!checked)
     UpdateAxios(item.id,item.todo,!checked)
   };
+
+  // 투두 삭제
+  const toDoDelete = async () => {
+    if(!window.confirm('삭제하시겠습니까?')){
+      return
+    }
+    await deleteTodoAxios(item.id)
+    getTodos();
+  }
    
     return (
         <TodoLi
+        textline = { checked ? 'line-through' : 'initial'}
         secondaryAction={
           <>
             <IconButton data-testid="modify-button" edge="end" aria-label="modificationBtn">
               <EditIcon/>
             </IconButton>
-            <IconButton data-testid="delete-button" edge="end" aria-label="deleteBtn">
+            <IconButton onClick={toDoDelete} data-testid="delete-button" edge="end" aria-label="deleteBtn">
               <DeleteOutlineRoundedIcon/>
             </IconButton>
           </>
@@ -50,6 +61,7 @@ const TodoContent = ({ item,getTodos }: PropsType) => {
                     checked={checked}
                     tabIndex={-1}
                     disableRipple
+                    inputProps={{ "aria-labelledby": `${item.id}` }}
                     onClick={handleCheckToggle}
                 />
             </ListItemIcon>
