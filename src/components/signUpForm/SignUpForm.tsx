@@ -7,7 +7,7 @@ import { useInput } from "../../hooks/useInput";
 import { signUpAxios } from "../../api/auth";
 import { validator } from "../../util/validator";
 
-type TestIdInputProps = Partial<
+type SignUpIdInputProps = Partial<
     React.InputHTMLAttributes<HTMLInputElement> & {
         "data-testid"?: string;
         defaultValue?: string | number | readonly string[] | undefined;
@@ -17,10 +17,10 @@ type TestIdInputProps = Partial<
 
 function SignUpForm() {
 
-  const inputIdProps: TestIdInputProps = {
+  const inputIdProps: SignUpIdInputProps = {
       "data-testid": "email-input",
   };
-  const inputPwProps: TestIdInputProps = {
+  const inputPwProps: SignUpIdInputProps = {
       "data-testid": "password-input",
   };
 
