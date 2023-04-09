@@ -1,4 +1,3 @@
-import React, { ClipboardEventHandler } from "react";
 import { SignUpFormWrap } from "./SignUpFormStyle";
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
@@ -6,21 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
 import { signUpAxios } from "../../api/auth";
 import { validator } from "../../util/validator";
+import { dataIdInputPropsType } from "../../types/inputData";
 
-type SignUpIdInputProps = Partial<
-    React.InputHTMLAttributes<HTMLInputElement> & {
-        "data-testid"?: string;
-        defaultValue?: string | number | readonly string[] | undefined;
-        onCopy?: ClipboardEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    }
->;
 
 function SignUpForm() {
 
-  const inputIdProps: SignUpIdInputProps = {
+  const inputIdProps: dataIdInputPropsType = {
       "data-testid": "email-input",
   };
-  const inputPwProps: SignUpIdInputProps = {
+  const inputPwProps: dataIdInputPropsType = {
       "data-testid": "password-input",
   };
 

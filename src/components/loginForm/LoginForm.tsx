@@ -1,4 +1,3 @@
-import React, { ClipboardEventHandler } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginFormWrap, ButtonFlexBox } from "./LoginFromStyle";
 import { Button, TextField, Typography } from "@mui/material";
@@ -6,21 +5,15 @@ import { Box } from "@mui/system";
 import { signInAxios } from "../../api/auth";
 import { useInput } from "../../hooks/useInput";
 import { validator } from "../../util/validator";
+import { dataIdInputPropsType } from "../../types/inputData";
 
-type LoginIdInputProps = Partial<
-    React.InputHTMLAttributes<HTMLInputElement> & {
-        "data-testid"?: string;
-        defaultValue?: string | number | readonly string[] | undefined;
-        onCopy?: ClipboardEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-    }
->;
 
 function LoginForm() {
 
-    const inputIdProps: LoginIdInputProps = {
+    const inputIdProps: dataIdInputPropsType = {
         "data-testid": "email-input",
     };
-    const inputPwProps: LoginIdInputProps = {
+    const inputPwProps: dataIdInputPropsType = {
         "data-testid": "password-input",
     };
 
