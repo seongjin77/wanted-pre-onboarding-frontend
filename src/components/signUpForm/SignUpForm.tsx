@@ -1,8 +1,8 @@
 import React, { ClipboardEventHandler } from "react";
-import { useNavigate } from "react-router-dom";
-import { LoginFormWrap, ButtonFlexBox } from "./LoginFromStyle";
+import { SignUpFormWrap } from "./SignUpFormStyle";
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 type TestIdInputProps = Partial<
     React.InputHTMLAttributes<HTMLInputElement> & {
@@ -12,8 +12,7 @@ type TestIdInputProps = Partial<
     }
 >;
 
-function LoginForm() {
-
+function SignUpForm() {
     const inputIdProps: TestIdInputProps = {
         "data-testid": "email-input",
     };
@@ -22,21 +21,18 @@ function LoginForm() {
     };
 
     const navigate = useNavigate();
-    const moveSignUp = () => {
-        navigate("/signup");
-    };
 
     return (
-        <LoginFormWrap>
+        <SignUpFormWrap>
             <Box>
                 <Typography variant="h4" component="h2">
-                    Login
+                    Sign up
                 </Typography>
                 <TextField
                     id="email"
                     type={"email"}
-                    placeholder="이메일"
-                    inputProps={inputIdProps}
+                    placeholder="이메일을 입력해주세요"
+                    data-testid="email-input"
                 />
                 <Typography
                     className="validationTxt"
@@ -44,24 +40,30 @@ function LoginForm() {
                 ></Typography>
                 <TextField
                     id="password"
-                    type={"password"}
-                    placeholder="비밀번호"
+                    type={"text"}
+                    placeholder="비밀번호를 입력해주세요"
                     data-testid="password-input"
-                    inputProps={inputPwProps}
                 />
                 <Typography
                     className="validationTxt"
                     component="span"
                 ></Typography>
-                <ButtonFlexBox>
-                    <Button variant="contained" data-testid="signin-button">
-                        로그인
-                    </Button>
-                    <Button onClick={moveSignUp} variant="contained">회원가입</Button>
-                </ButtonFlexBox>
+                <TextField
+                    id="passwordCheck"
+                    type={"text"}
+                    placeholder="비밀번호 확인"
+                    data-testid="passwordCheck-input"
+                />
+                <Typography
+                    className="validationTxt"
+                    component="span"
+                ></Typography>
+                <Button variant="contained" data-testid="signup-button">
+                    회원가입
+                </Button>
             </Box>
-        </LoginFormWrap>
+        </SignUpFormWrap>
     );
 }
 
-export default LoginForm;
+export default SignUpForm;
