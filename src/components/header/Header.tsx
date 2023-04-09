@@ -20,7 +20,7 @@ const Header = () => {
         <HeaderBar>
             <Toolbar>
                 <Typography variant="h3" component="h1">
-                    Bucket List
+                    Todo List
                 </Typography>
                 {pathname === '/signin' || pathname === '/signup' || token ? null : <Button onClick={login} color="inherit">login</Button>
                 }

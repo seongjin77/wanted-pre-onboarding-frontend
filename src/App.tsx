@@ -6,6 +6,7 @@ import Todo from "./pages/todo/Todo";
 import { PrivateRoute, PublicRoute } from "./router/Router";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Header from "./components/header/Header";
+import Error from "./pages/404page/404page";
 
 function App() {
     const theme = createTheme({
@@ -17,7 +18,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="md">
-                <Header/>
+                <Header />
                 <Routes>
                     <Route path="/" element={<Navigate to="/todo" />} />
                     <Route
@@ -44,7 +45,7 @@ function App() {
                             </PublicRoute>
                         }
                     />
-                    <Route path="/signup" element={<Sign />} />
+                    <Route path="/*" element={<Error />} />
                 </Routes>
             </Container>
         </ThemeProvider>
