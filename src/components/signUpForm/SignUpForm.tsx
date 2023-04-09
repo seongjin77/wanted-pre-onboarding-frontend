@@ -13,6 +13,7 @@ type TestIdInputProps = Partial<
 >;
 
 function SignUpForm() {
+
     const inputIdProps: TestIdInputProps = {
         "data-testid": "email-input",
     };
@@ -32,7 +33,7 @@ function SignUpForm() {
                     id="email"
                     type={"email"}
                     placeholder="이메일을 입력해주세요"
-                    data-testid="email-input"
+                    inputProps={inputIdProps}
                 />
                 <Typography
                     className="validationTxt"
@@ -42,7 +43,7 @@ function SignUpForm() {
                     id="password"
                     type={"text"}
                     placeholder="비밀번호를 입력해주세요"
-                    data-testid="password-input"
+                    inputProps={inputPwProps}
                 />
                 <Typography
                     className="validationTxt"
@@ -52,7 +53,7 @@ function SignUpForm() {
                     id="passwordCheck"
                     type={"text"}
                     placeholder="비밀번호 확인"
-                    data-testid="passwordCheck-input"
+                    inputProps={inputPwProps}
                 />
                 <Typography
                     className="validationTxt"
