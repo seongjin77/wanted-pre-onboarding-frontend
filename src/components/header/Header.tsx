@@ -1,5 +1,4 @@
 import { Button, Toolbar, Typography } from "@mui/material";
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HeaderBar from "./HeaderStyle";
 
@@ -22,7 +21,10 @@ const Header = () => {
                 <Typography variant="h3" component="h1">
                     Todo List
                 </Typography>
-                {pathname === '/signin' || pathname === '/signup' || token ? null : <Button onClick={login} color="inherit">login</Button>
+                {pathname === '/signin' || pathname === '/signup' || token ? 
+                null 
+                : 
+                <Button onClick={login} color="inherit">login</Button>
                 }
                 {token ? <Button color="inherit" onClick={logout}>logout</Button> : null}
             </Toolbar>
